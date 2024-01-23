@@ -1,3 +1,15 @@
+body {
+  cursor: url("../assets/cursor/cursor.cur"), default;
+}
+
+button,
+a,
+img:hover,
+button:hover,
+a:hover {
+  cursor: url("../assets/cursor/cursor.cur"), auto;
+}
+
 .bg-video {
   position: absolute;
   z-index: -2;
@@ -49,17 +61,17 @@
 }
 
 .score_box {
-  background-color: white;
+  background-color: rgb(255, 255, 255);
   padding: 30px;
 }
 
 .frame {
-  border: 3px solid black;
+  border: 3px solid rgba(0, 0, 0, 0.842);
   border-radius: 5px;
 }
 
 .card_details {
-  background-color: white;
+  background-color: rgb(255, 255, 255);
   padding: 1rem;
   display: flex;
   flex-direction: column;
@@ -85,10 +97,10 @@
 }
 
 .card-versus__container {
-  margin-top: 5rem;
   border: 1px solid red;
   display: flex;
   flex-direction: column;
+  justify-content: space-evenly;
   padding-top: 0.1rem;
   height: 300px;
 }
@@ -105,7 +117,7 @@
 }
 
 #next-duel {
-  display: none;
+  visibility: hidden;
 }
 
 .card-box {
@@ -120,6 +132,7 @@
 .card-infield {
   height: 11.2rem;
   width: 8rem;
+  border: 1px solid rgb(255, 170, 73);
   border-radius: 8px;
 }
 

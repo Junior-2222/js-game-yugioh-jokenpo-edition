@@ -87,11 +87,11 @@ async function setCardsField(cardId) {
 
     let computerCardId = await getRandomCardId();
 
-    state.fieldCards.player.style.display = "block";
-    state.fieldCards.computer.style.display = "block";
+    await ShowHiddenCardFieldsImages(true);
 
-    state.fieldCards.player.src = cardData[cardId].img;
-    state.fieldCards.computer.src = cardData[computerCardId].img;
+    hiddenCardDetails();
+
+    await drawCardsInField(cardId, computerCardId);
 
     let duelResults = await checkDuelResults(cardId, computerCardId);
 
@@ -99,9 +99,30 @@ async function setCardsField(cardId) {
     await drawButton(duelResults);
 }
 
+async function drawCardsInField(cardId, computerCardId) {
+    state.fieldCards.player.src = cardData[cardId].img;
+    state.fieldCards.computer.src = cardData[computerCardId].img;
+}
+
+async function ShowHiddenCardFieldsImages(value) {
+    if (value) {
+        state.fieldCards.player.style.display = "block";
+        state.fieldCards.computer.style.display = "block";
+    } else {
+        state.fieldCards.player.style.display = "none";
+        state.fieldCards.computer.style.display = "none";
+    }
+}
+
+async function hiddenCardDetails() {
+    state.cardSprites.avatar.src = "";
+    state.cardSprites.name.innerText = "";
+    state.cardSprites.type.innerText = "";
+}
+
 async function drawButton(text) {
     state.actions.button.innerText = text
-    state.actions.button.style.display = "block";
+    state.actions.button.style.visibility = "visible";
 }
 
 async function updateScore() {
@@ -155,7 +176,7 @@ async function drawCards(cardNumbers, fieldSide) {
 
 async function resetDuel() {
     state.cardSprites.avatar.src = ""
-    state.actions.button.style.display = "none";
+    state.actions.button.style.visibility = "hidden";
 
     state.fieldCards.player.style.display = "none";
     state.fieldCards.computer.style.display = "none";
@@ -169,7 +190,11 @@ async function playAudio(status) {
 }
 
 function init() {
+    ShowHiddenCardFieldsImages(false);
     drawCards(5, state.playerSides.player1);
     drawCards(5, state.playerSides.computer);
+
+    const bgm = document.getElementById("bgm");
+    bgm.play();
 }
 init();

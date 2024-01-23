@@ -12,7 +12,7 @@
 }
 
 /* game div with background image*/
-.rpgui-container.framed {
+.framed {
   /* border */
   border-style: solid;
   border-image-source: url("../assets/rpg/border-image.png");
